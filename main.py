@@ -4,11 +4,16 @@ width,height = 1920,1160
 
 map_img = pygame.image.load("images\\background\\middle_map.png")
 you = pygame.image.load("images\\characters\\you.png")
+y = pygame.mask.from_surface(you)
+rectyou = you.get_rect()
 enemy = pygame.image.load("images\\characters\\enemy.png")
 map = pygame.transform.scale(map_img,(1920,1160))
-x = pygame.mask.from_surface(you)
+recty = pygame.mask.Mask.get_rect(y)
+x = pygame.mask.from_surface(enemy)
+rectenemy = enemy.get_rect()
+
+
 screen = pygame.display.set_mode((width,height))
-y = pygame.mask.from_surface(enemy)
 
 position_of_mouse = pygame.mouse.get_pos()
 class App():
@@ -16,8 +21,15 @@ class App():
 
         self.posX = 500
         self.posY = 500
+        self.rectyouX = self.posX + 85
+        self.rectyouY = self.posY + 115
         self.enemyX = 300
         self.enemyY = 300
+        self.rectenemyX = self.enemyX + 84
+        self.rectenemyY = self.enemyY + 113
+        self.rectofyou = you.get_rect(center=(self.rectyouX, self.rectyouY))
+        self.rectofenemy = enemy.get_rect(center=(self.rectenemyX, self.rectenemyY))
+        self.collide = pygame.Rect.colliderect(self.rectofyou, self.rectofenemy)
 
         self.main()
 
@@ -46,7 +58,8 @@ class App():
     def main(self):
         running = True
         while True:
-
+            if self.collide:
+                pring("d")
             screen.blit(map,(0,0))
             screen.blit(you,(self.posX,self.posY))
             screen.blit(enemy,(self.enemyX,self.enemyY))
