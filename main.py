@@ -1,5 +1,5 @@
 import pygame
-
+import random
 width,height = 1920,1160
 
 map_img = pygame.image.load("images\\background\\middle_map.png")
@@ -59,7 +59,7 @@ class App():
         running = True
         while True:
             if self.collide:
-                pring("d")
+                pring("jest kolizja :) ")
             screen.blit(map,(0,0))
             screen.blit(you,(self.posX,self.posY))
             screen.blit(enemy,(self.enemyX,self.enemyY))
