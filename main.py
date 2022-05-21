@@ -21,15 +21,15 @@ class App():
 
         self.posX = 500
         self.posY = 500
-        self.rectyouX = self.posX + 85
-        self.rectyouY = self.posY + 115
+        self.rectyouX = self.posX + 84
+        self.rectyouY = self.posY + 112.5
         self.enemyX = 300
         self.enemyY = 300
-        self.rectenemyX = self.enemyX + 84
-        self.rectenemyY = self.enemyY + 113
-        self.rectofyou = you.get_rect(center=(self.rectyouX, self.rectyouY))
-        self.rectofenemy = enemy.get_rect(center=(self.rectenemyX, self.rectenemyY))
-        self.collide = pygame.Rect.colliderect(self.rectofyou, self.rectofenemy)
+        self.rectenemyX = self.enemyX + 85
+        self.rectenemyY = self.enemyY + 115.5
+
+
+
 
         self.main()
 
@@ -40,16 +40,13 @@ class App():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    self.posX -= 4
+                    self.posX -= 30
                 if event.key == pygame.K_RIGHT:
-                    self.posX += 4
+                    self.posX += 30
                 if event.key == pygame.K_UP:
-                    self.posY -= 4
+                    self.posY -= 30
                 if event.key == pygame.K_DOWN:
-                    self.posY += 4
-
-
-
+                    self.posY += 30
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -58,8 +55,14 @@ class App():
     def main(self):
         running = True
         while True:
+
+            self.rectofyou = you.get_rect(center=(self.rectyouX , self.rectyouY))
+            self.rectofenemy = enemy.get_rect(center=(self.rectenemyX, self.rectenemyY))
+            self.collide = pygame.Rect.colliderect(self.rectofyou, self.rectofenemy)
+
+
             if self.collide:
-                pring("jest kolizja :) ")
+                print("jest kolizja :) ")
             screen.blit(map,(0,0))
             screen.blit(you,(self.posX,self.posY))
             screen.blit(enemy,(self.enemyX,self.enemyY))
