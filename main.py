@@ -19,11 +19,11 @@ position_of_mouse = pygame.mouse.get_pos()
 class App():
     def __init__(self):
 
-        self.posX = 500
+        self.posX = 500 #VALUE OF X AND Y YOU
         self.posY = 500
         self.rectyouX = self.posX + 84
         self.rectyouY = self.posY + 112.5
-        self.enemyX = 300
+        self.enemyX = 300 #VALUE OF X AND Y ENEMY
         self.enemyY = 300
         self.rectenemyX = self.enemyX + 85
         self.rectenemyY = self.enemyY + 115.5
