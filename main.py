@@ -7,14 +7,14 @@ youimg = pygame.image.load("images\\characters\\you.png")
 you = pygame.transform.scale(youimg,(100,100))
 enemyimg = pygame.image.load("images\\characters\\enemy.png")
 enemy = pygame.transform.scale(enemyimg,(100,100))
-map = pygame.transform.scale(map_img,(1920,1160))
+map = pygame.transform.scale(map_img,(width,height))
 
-screen = pygame.display.set_mode((width,height))
+screen = pygame.display.set_mode((width,height), pygame.FULLSCREEN | pygame.SCALED)
 
 position_of_mouse = pygame.mouse.get_pos()
 class App():
     def __init__(self):
-
+        self.running = True
         self.yourposX = 500 #VALUE OF X AND Y YOU
         self.yourposY = 500
         self.enemyposX = 300 #VALUE OF X AND Y ENEMY
@@ -22,11 +22,16 @@ class App():
         self.main()
 
     def events_handling(self):
-        ev = pygame.event.get()
-        for event in ev:
-            self.position_of_mouse = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+                self.running = False
+                return
 
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.running = False
+                    return
                 if event.key == pygame.K_LEFT:
                     self.yourposX -= 30
                 if event.key == pygame.K_RIGHT:
@@ -56,8 +61,7 @@ class App():
 
 
     def main(self):
-        running = True
-        while True:
+        while self.running:
 
             self.draw_screen()
             self.events_handling()
