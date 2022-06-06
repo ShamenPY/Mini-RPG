@@ -15,12 +15,13 @@ position_of_mouse = pygame.mouse.get_pos()
 class App():
     def __init__(self):
         self.running = True
+
         self.movement = [0,0]
         self.speed = 6
         
-        self.yourposX = 500 #VALUE OF X AND Y YOU
+        self.yourposX = 500
         self.yourposY = 500
-        self.enemyposX = 300 #VALUE OF X AND Y ENEMY
+        self.enemyposX = 300
         self.enemyposY = 300
         self.main()
 
@@ -77,10 +78,25 @@ class App():
 
     def main(self):
         while self.running:
-
             self.draw_screen()
             self.events_handling()
 
             pygame.display.flip()
 
+
+class Enemy():
+    def __init__(self):
+        self.main()
+    def main(self):
+        pass
+
+class You():
+    def __init__(self):
+        self.main()
+    def main(self):
+        pass
+
 App = App()
+
+Enemy = Enemy()
+
